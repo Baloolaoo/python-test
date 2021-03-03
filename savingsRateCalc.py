@@ -6,8 +6,9 @@ monthlySavingsRate = 100.0
 temp = 0.0
 
 for x in listOfReturns:
-    temp += monthlySavingsRate + (temp * x/100)
-    print(str(listOfReturns.index(x)+1) + ":\t " + str(temp) + "\t r=\t" + str(x))
+    temp += monthlySavingsRate
+    temp += temp * x / 100
+    print(str(listOfReturns.index(x) + 1) + ":\t " + str(temp) + "\t r=\t" + str(x))
 
 txt = "Total: \t {temp:.2f}"
 print(txt.format(temp=temp))
