@@ -6,7 +6,13 @@ import matplotlib.dates as mpl_dates
 import mplfinance as mpf
 
 '''
-This scripts purpose is to plot a candlestick chart
+This scripts purpose is to plot a candlestick chart out of a pandas dataframe.
+Next To-Do:
+    - Move 'upday'-loop to function
+    - Add functions for
+        - Inside days
+        - Outside days
+    - Plot Inside/Outside days in chart
 '''
 
 # set print options for console output
@@ -21,6 +27,7 @@ end_date = '2021-02-28'
 # Call the function DataReader from the class data
 dataset = data.DataReader('GC=F', 'yahoo', start_date, end_date)
 
+# Append if it is an upday (Close > Open)
 for i, row in dataset.iterrows():
     upday_val = False
     if row['Close'] > row['Open']:
