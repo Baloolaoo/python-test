@@ -1,8 +1,7 @@
 # imports
 import pandas_datareader as data
 import pandas as pd
-import matplotlib.pyplot as mpl_plt
-import matplotlib.dates as mpl_dates
+import numpy as np
 import mplfinance as mpf
 
 '''
@@ -27,13 +26,18 @@ end_date = '2021-02-28'
 # Call the function DataReader from the class data
 dataset = data.DataReader('GC=F', 'yahoo', start_date, end_date)
 
-# Append if it is an upday (Close > Open)
+# Upday (Close > Open)
 for i, row in dataset.iterrows():
-    upday_val = False
-    if row['Close'] > row['Open']:
-        upday_val = True
-    dataset.at[i,'Upday'] = upday_val
+    upday_val = np.nan
+    if (row['Close'] > row['Open']):
+        upday_val = row['Low']*0.99
+        dataset.at[i, 'Upday'] = True
+        dataset.at[i,'Upday_Signal'] = upday_val
+    else:
+        dataset.at[i, 'Upday'] = False
+
+apd = mpf.make_addplot(dataset['Upday_Signal'], type='scatter',markersize=100,marker='^', color='r')
 
 print(dataset)
 
-mpf.plot(dataset,type='candle')
+mpf.plot(dataset,type='candle',addplot=apd)
