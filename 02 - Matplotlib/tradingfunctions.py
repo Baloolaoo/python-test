@@ -13,3 +13,12 @@ def updays(dataset):
             dataset.at[i, 'Upday'] = False
 
     return dataset
+
+
+# Append trading range (High - Low)
+def tradingrange(dataset):
+    for i, row in dataset.iterrows():
+        dataset.at[i, 'Range'] = dataset.at[i, 'High'] - dataset.at[i, 'Low']
+
+    return dataset
+
