@@ -27,6 +27,7 @@ dataset = data.DataReader('GC=F', 'yahoo', start_date, end_date)
 
 # Transform with tradingfunctions.py
 dataset = tf.updays(dataset)
+dataset = tf.tradingrange(dataset)
 
 apd = mpf.make_addplot(dataset['Upday_Signal'], type='scatter',markersize=100,marker='^', color='r')
 
