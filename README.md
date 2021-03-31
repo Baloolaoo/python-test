@@ -1,7 +1,7 @@
 ###### TEST REPOSITORY
 This repository solely exists for small python scripts as I'm learning and getting comfortable with the language
 
-**00 - Datasources''
+**00 - Datasources**
 Contains all data files in various formats like .csv etc'
 
 **01 - Unsorted**
