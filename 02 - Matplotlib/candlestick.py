@@ -2,7 +2,7 @@
 import pandas_datareader as data
 import pandas as pd
 import mplfinance as mpf
-import tradingfunctions as tf
+import trading_functions as tf
 
 '''
 This scripts purpose is to plot a candlestick chart out of a pandas dataframe.
@@ -25,7 +25,7 @@ end_date = '2021-02-28'
 # Call the function DataReader from the class data
 dataset = data.DataReader('GC=F', 'yahoo', start_date, end_date)
 
-# Transform with tradingfunctions.py
+# Transform with trading_functions.py
 dataset = tf.updays(dataset)
 dataset = tf.tradingrange(dataset)
 
